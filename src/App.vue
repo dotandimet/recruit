@@ -14,7 +14,7 @@
     </ul>
     </div>
     <div class="ability_box">
-    <character-sheet v-on:ability_selected="add_ability"></character-sheet>
+    <character-sheet></character-sheet>
     </div>
  </div>
 </template>
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
   selected (ability) {
-    this.$emit('ability_selected', ability);
+    this.$emit('add_ability', ability);
     alert(ability);
   }
  }
