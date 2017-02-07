@@ -26,9 +26,10 @@ export default {
     editable
   },
   methods: {
-  selected (ability) {
-    this.$emit('add_ability', ability);
-    alert(ability);
+    selected (ability) {
+      this.$emit('add_ability', ability);
+      alert(ability);
+    }
   },
   mounted() {
     this.$on('addAbility', (ability) => console.log("Hello from app: " + ability));
