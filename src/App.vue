@@ -5,8 +5,8 @@
     <div>
         <h2>An editable field?</h2>
         <ul>
-        <li><editable text="what is up?"></editable></li>
-        <li><editable text="I am a text field, not a free man!"></editable></li>
+        <li><editable value="what is up?"></editable></li>
+        <li><editable value="I am a text field, not a free man!"></editable></li>
         </ul>
  </div>
 </template>
@@ -26,12 +26,12 @@ export default {
     editable
   },
   methods: {
-//  selected (ability) {
-//    this.$emit('add_ability', ability);
-//    alert(ability);
+  selected (ability) {
+    this.$emit('add_ability', ability);
+    alert(ability);
   },
   mounted() {
-    this.$on('add_ability', (ability) => console.log(ability));
+    this.$on('addAbility', (ability) => console.log("Hello from app: " + ability));
   }
 }
 </script>

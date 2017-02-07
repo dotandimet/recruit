@@ -28,7 +28,7 @@ export default {
   },
  methods: {
   selected (ability) {
-    this.$emit('add_ability', ability);
+    this.$emit('addAbility', ability);
     alert(ability);
   }
  }

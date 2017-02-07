@@ -75,10 +75,16 @@ const technical_abilities = [
 
 let investigative_abilities = [ ...academic_abilities, ...interpersonal_abilities, ...technical_abilities ];
 
+
 export default {
     academic_abilities,
     interpersonal_abilities,
     technical_abilities,
     investigative_abilities,
-    general_abilities
+    general_abilities,
+    is_general: (name) => { return general_abilities.indexOf(name) > -1 },
+    is_investigative: (name) => { return investigative_abilities.indexOf(name) > -1 },
+    is_academic: (name) => { return academic_abilities.indexOf(name) > -1 },
+    is_interpersonal: (name) => { return interpersonal_abilities.indexOf(name) > -1 },
+    is_technical: (name) => { return technical_abilities.indexOf(name) > -1 }
 };
