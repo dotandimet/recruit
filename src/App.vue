@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <abilities-list></abilities-list>
-    <character-sheet></character-sheet>
+    <abilities-list v-on:add="addAbility($event)"></abilities-list>
+    <character-sheet v-bind:character="char"></character-sheet>
     <div>
         <h2>An editable field?</h2>
         <ul>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import abilities from './abilities';
 import character from './character';
 import characterSheet from './character_sheet.vue';
 import abilitiesList from './abilities_list.vue';
@@ -25,14 +24,13 @@ export default {
     abilitiesList,
     editable
   },
-  methods: {
-    selected (ability) {
-      this.$emit('add_ability', ability);
-      alert(ability);
-    }
+  data() {
+    return { char: character.character('Jerry') };
   },
-  mounted() {
-    this.$on('addAbility', (ability) => console.log("Hello from app: " + ability));
+  methods: {
+    addAbility(ability) {
+      character.set_ability(this.char, ability, 1);
+    }
   }
 }
 </script>

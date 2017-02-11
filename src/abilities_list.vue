@@ -4,7 +4,7 @@
     <div class="ability_box">
     <h2>Investigative Abilities</h2>
     <ul>
-      <li v-for="ability in abilities.investigative_abilities">{{ ability }}</li>
+      <li v-for="ability in abilities.investigative_abilities" v-on:click="selected(ability)">{{ ability }}</li>
     </ul>
     </div>
     <div class="ability_box">
@@ -28,8 +28,7 @@ export default {
   },
  methods: {
   selected (ability) {
-    this.$emit('addAbility', ability);
-    alert(ability);
+    this.$emit('add', ability);
   }
  }
 }

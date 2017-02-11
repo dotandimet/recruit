@@ -1,17 +1,17 @@
 <template>
 <div>
-<h1><editable v-bind:value="name"></editable></h1>
+<h1><editable v-bind:value="character.name"></editable></h1>
 <h2>Investigative Abilities</h2>
-<scores v-bind:value="abilities.investigative"
+<scores v-bind:value="character.abilities.investigative"
 v-on:increase="increase_ability($event)"
 v-on:decrease="decrease_ability($event)"
 ></scores>
 <h2>General Abilities</h2>
-<scores v-bind:value="abilities.general"
+<scores v-bind:value="character.abilities.general"
 v-on:increase="increase_ability($event)"
 v-on:decrease="decrease_ability($event)"
 ></scores>
-<div><b>Budget</b> Investigative: {{ budget.investigative }}, General: {{ budget.general }}
+<div><b>Budget</b> Investigative: {{ character.budget.investigative }}, General: {{ character.budget.general }}
 <span v-show="is_done" style="color: red">DONE</span></div>
 </div>
 </template>
@@ -25,20 +25,11 @@ export default {
        editable,
        scores
    },
-   data() {
-        return {
-            name: 'Bob',
-            abilities: {
-                investigative: [ { name: "Criminology", value: 2 },{ name: "Research", value: 3 } ],
-                general: [ {name: "Driving", value: 5}, {name: "Cover", value: 4} ]
-            },
-            budget: { investigative: 20, general: 70 }
-        };
-   },
+   props: ['character'],
    computed: {
         is_done() { 
-            return this.budget.general === 0 
-                && this.budget.investigative === 0
+            return this.character.budget.general === 0 
+                && this.character.budget.investigative === 0
         }
    },
    methods: {
@@ -46,38 +37,13 @@ export default {
         console.log("Just A log: ");
         console.log(foo);
     },
-    set_ability (name, value) {
-    let type = (abilities.is_general(name))         ? 'general'
-               : (abilities.is_investigative(name)) ? 'investigative'
-                                                    : 'unknown';
-
-        if (this.budget[type] - value >= 0) {
-            let ability = this.abilities[type].find((i) => i.name === name);
-            if (!ability) {
-                ability = {
-                  name: name,
-                  value: 0
-                };
-                this.abilities[type].push( ability );
-            }
-            let cur_val = ability.value || 0;
-            ability.value = cur_val + value;
-            // if we hit an ability score of 0, remove the ability from the list
-            if (ability.value === 0) {
-                this.abilities[type] = this.abilities[type].filter((i) => i.name != ability.name);
-            }
-            this.budget[type] = this.budget[type] - value;
-        }
-  },
-  increase_ability (name) {
-    this.set_ability(name, 1);
-    this.log(this.abilities);
-  },
-  decrease_ability (name ) {
-    this.set_ability(name, -1);
-  }
-
-  }
+    increase_ability(ability) {
+        character.set_ability(this.character, ability, 1);
+    },
+    decrease_ability(ability) {
+        character.set_ability(this.character, ability, -1);
+    }
+   }
 };
 </script>
 <style scoped>
