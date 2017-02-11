@@ -2,27 +2,19 @@
   <div id="app">
     <abilities-list v-on:add="addAbility($event)"></abilities-list>
     <character-sheet v-bind:character="char"></character-sheet>
-    <div>
-        <h2>An editable field?</h2>
-        <ul>
-        <li><editable value="what is up?"></editable></li>
-        <li><editable value="I am a text field, not a free man!"></editable></li>
-        </ul>
- </div>
+</div>
 </template>
 
 <script>
 import character from './character';
 import characterSheet from './character_sheet.vue';
 import abilitiesList from './abilities_list.vue';
-import editable from './editable.vue';
 
 export default {
   name: 'app',
   components: {
     characterSheet,
-    abilitiesList,
-    editable
+    abilitiesList
   },
   data() {
     return { char: character.character('Jerry') };

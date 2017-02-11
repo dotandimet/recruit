@@ -1,9 +1,22 @@
 import abilities from './abilities';
 
-function character (name, budget) {
+const free_abilities = {
+            general: [
+                { name: 'Cover', value: 10 },
+                { name: 'Network', value: 15 },
+                { name: 'Health', value: 4 },
+                { name: 'Stability', value: 4 }
+            ],
+            investigative: [
+                { name: 'Streetwise', value: 1 },
+                { name: 'Tradecraft', value: 1 }
+            ]
+        };
+
+ function character (name, budget, my_abilities) {
         let c = {};
-        c.name = name || '';
-        c.abilities = { general: [], investigative: [] };
+        c.name = name || 'John Doe';
+        c.abilities = my_abilities || free_abilities; 
         c.budget = budget || { investigative: 20, general: 70 };
         return c;
 };
@@ -32,4 +45,8 @@ function set_ability (character, name, value) {
         }
 };
 
+
+function apply_background (character, background) {
+    background.abilities.map( (a) => set_ability(character, a) )
+}
 export default { character, set_ability };
