@@ -1,31 +1,10 @@
 <template>
   <div id="app">
-    <abilities-list v-on:add="addAbility($event)"></abilities-list>
-    <character-sheet v-bind:character="char"></character-sheet>
+    <router-link to="/team">Team</router-link>
+    <p>
+      <router-view></router-view>
 </div>
 </template>
-
-<script>
-import character from './character';
-import characterSheet from './character_sheet.vue';
-import abilitiesList from './abilities_list.vue';
-
-export default {
-  name: 'app',
-  components: {
-    characterSheet,
-    abilitiesList
-  },
-  data() {
-    return { char: character.character('Jerry') };
-  },
-  methods: {
-    addAbility(ability) {
-      character.set_ability(this.char, ability, 1);
-    }
-  }
-}
-</script>
 
 <style>
 #app {
