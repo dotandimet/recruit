@@ -1,0 +1,7 @@
+{
+  "extends": ["vue"],
+  "plugins": ["vue"],
+  "rules": {
+    /* your overrides -- vue/jsx-uses-vars is included in eslint-config-vue */
+  }
+}
