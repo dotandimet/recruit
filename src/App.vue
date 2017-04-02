@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <router-link to="/team">Team</router-link>
-    <router-link to="/background">Background</router-link>
-    <p>
+    <ul>
+    <li><router-link to="/team">Team</router-link></li>
+    <li><router-link to="/background">Background</router-link></li>
+    </ul>
       <router-view></router-view>
 </div>
 </template>
